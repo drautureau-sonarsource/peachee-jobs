@@ -1,7 +1,7 @@
 node('docker') {
 
     stage 'Checkout'
-    git url: "https://github.com/SonarSource/sonar-maven", branch: "$master"
+    git url: "https://github.com/SonarSource/sonar-maven", branch: "master"
 
     stage 'Build'
     def build = docker.image("maven:3.2.5-jdk-8")

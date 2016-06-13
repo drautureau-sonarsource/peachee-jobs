@@ -3,8 +3,19 @@ node('docker') {
     stage 'Checkout'
     svn 'http://subversion.jfrog.org/artifactory/public/trunk'
 
+    def myEnv
+
+    // Use a dedicated workspace to build the Docker image
+    // This way, we don't interfer with the workspace dedicated to the project to analyse.
+    ws {
+        stage 'Configure Maven settings'
+        // - Checkout on the 'docker' slave what has been checked out on master (we need the Dockerfile)
+        checkout scm
+        // Build the docker image
+        myEnv = docker.build "${env.JOB_NAME}:snapshot"
+    }
+
     stage 'Build'
-    def myEnv = docker.build "${env.JOB_NAME}:snapshot"
     myEnv.inside {
         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true -Dpmd.skip=true  -Dgpg.skip=true -B -e "
     }

@@ -4,7 +4,6 @@ node('docker') {
     svn 'http://subversion.jfrog.org/artifactory/public/trunk'
 
     stage 'Build'
-    checkout scm
     def myEnv = docker.build "${env.JOB_NAME}:snapshot"
     myEnv.inside {
         sh "mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true -V -Dcheckstyle.skip=true -Dpmd.skip=true  -Dgpg.skip=true -B -e "

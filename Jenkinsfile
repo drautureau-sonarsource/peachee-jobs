@@ -13,11 +13,7 @@ node('docker') {
         checkout scm
         // Build the docker image
         myEnv = docker.build "${env.JOB_NAME}:snapshot"
-
-        stage 'Configure NPM'
-        stash includes: '.npmrc', name: 'NPM'
     }
-    unstash 'NPM'
 
     stage 'Build'
     myEnv.inside {

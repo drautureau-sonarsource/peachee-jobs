@@ -10,7 +10,7 @@ node('linux') {
         // The workaroud until https://jira.sonarsource.com/browse/SONARJNKNS-213 is fixed
         // This need credentials-binding-plugin (https://cloudbees.zendesk.com/hc/en-us/articles/204897020-Fetch-a-userid-and-password-from-a-Credential-object-in-a-Pipeline-job-)
         withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'af31d5fa-f22c-42d8-b6e4-177686ec44d5', usernameVariable: 'PEACH_URL', passwordVariable: 'PEACH_TOKEN']]) {
-            sh "sonar-scanner -Dsonar.projectKey=dav.atlasboard -Dsonar.projectVersion=master -Dsonar.projectName=\"Dav Atlasboard\" -Dsonar.sources=. -Dsonar.language=js -Dsonar.sourceEncoding=UTF-8 -Dsonar.host.url=${env.PEACH_URL} -Dsonar.login=${env.PEACH_TOKEN}"
+            sh "sonar-scanner -Dsonar.projectKey=dav.atlasboard -Dsonar.projectVersion=master -Dsonar.projectName=\"Dav Atlasboard\" -Dsonar.sources=. -Dsonar.language=js -Dsonar.sourceEncoding=UTF-8 -Dsonar.host.url=${env.PEACH_URL} -Dsonar.login=${env.PEACH_TOKEN} -Dsonar.links.ci=${env.JOB_URL}"
         }
     }
 }

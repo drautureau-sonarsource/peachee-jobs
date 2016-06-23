@@ -32,8 +32,6 @@ node('linux') {
     // /home/ssjenka/peach-jenkins/workspace/samples-jobs
     // [ssjenka@peach-slave-centos7-1 samples-jobs]$ ls InvestigatingDeleteWorkspaceIssue\@2/
     // cfamily-analyze.sh  cfamily-build.sh  Jenkinsfile  README.md
-    // [ssjenka@peach-slave-centos7-1 samples-jobs]$ ls InvestigatingDeleteWorkspaceIssue
-    // cfamily-analyze.sh  cfamily-build.sh
 
     stage 'checkout'
     checkout scm: [$class: 'MercurialSCM', source: "${repoURL}"]
@@ -50,5 +48,5 @@ node('linux') {
     // [ssjenka@peach-slave-centos7-1 samples-jobs]$ ls InvestigatingDeleteWorkspaceIssue\@2/
     // cfamily-analyze.sh  cfamily-build.sh  Jenkinsfile  README.md
     // [ssjenka@peach-slave-centos7-1 samples-jobs]$ ls InvestigatingDeleteWorkspaceIssue
-    // ASSEMBLY_EXCEPTION  common  configure  get_source.sh  LICENSE  make  Makefile  README  README-builds.html  test  THIRD_PARTY_README
+    // ASSEMBLY_EXCEPTION  cfamily-analyze.sh  cfamily-build.sh  common  configure  get_source.sh  LICENSE  make  Makefile  README  README-builds.html  test  THIRD_PARTY_README
 }

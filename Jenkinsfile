@@ -12,6 +12,10 @@ input message: 'Check workspaces', ok: 'OK'
 // 0
 
 node('linux') {
+
+    stage 'clean workspace'
+    deleteDir()
+    input message: 'Check workspaces', ok: 'OK'
     
     stage 'install'
     // without ws - "unable to prepare context: unable to evaluate symlinks in Dockerfile path: lstat /home/ssjenka/peach-jenkins/workspace/CFamily/wip-docker/Dockerfile: no such file or directory"
